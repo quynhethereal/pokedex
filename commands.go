@@ -3,8 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"os"
 	"math/rand"
+	"os"
 )
 
 func commandExit(cfg *config, args ...string) error {
@@ -101,17 +101,15 @@ func commandCatch(cfg *config, args ...string) error {
 		fmt.Printf("You failed to catch a %s!\n", pokemonResp.Name)
 	}
 
-
 	return nil
 }
-
 
 func commandInspect(cfg *config, args ...string) error {
 	if len(args) == 0 {
 		return errors.New("please provide a pokemon name/id")
 	}
 	pokemon_name := args[0]
-	pokemon, ok := cfg.pokemonCaptured[pokemon_name];
+	pokemon, ok := cfg.pokemonCaptured[pokemon_name]
 	if !ok {
 		fmt.Printf("You have not caught %s\n", pokemon_name)
 		return nil
@@ -135,11 +133,11 @@ func commandInspect(cfg *config, args ...string) error {
 }
 
 func commandPokedex(cfg *config, args ...string) error {
-	if len(cfg.pokemonCaptured)	== 0 {
+	if len(cfg.pokemonCaptured) == 0 {
 		return fmt.Errorf("your pokedex is empty")
 	}
 	fmt.Println("Your Pokedex:")
-	for pokemon, _ := range cfg.pokemonCaptured {
+	for pokemon := range cfg.pokemonCaptured {
 		fmt.Printf(" - %s\n", pokemon)
 	}
 	return nil
